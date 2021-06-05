@@ -1,5 +1,8 @@
 <header>
 <h1 class="show">ツイート詳細画面</h1>
 </header>
-<p>内容: <%= @picture.content %></p>
+<p>
+  内容: <%= @picture.content %>
+  <%= image_tag @feed.image.url %>
+</p>
 <%= link_to "ツイート一覧画面にもどる", pictures_path %>

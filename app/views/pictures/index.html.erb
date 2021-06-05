@@ -8,7 +8,6 @@
   </tr>
 <% @pictures.each do |picture| %>
   <tr>
-
     <td><%= picture.content %></td>
     <td><%= picture.user.name %></td>
     <td><%= link_to '投稿を確認する', picture_path(picture.id) %></td>

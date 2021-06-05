@@ -11,6 +11,11 @@
   <% end %>
 
   <div class="picture_title">
+    <%= form.label :image %><br>
+    <%= form.file_field :image %>
+  </div>
+
+  <div class="picture_title">
     <%= form.label :content %><br>
     <%= form.text_field :content %>
   </div>
