@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
-  get 'sessions/new'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :posts do
     collection do
       post :confirm
+    end
+  end
+  resources :pictures do
+    collection do
+      picture :confirm
     end
   end
   resources :sessions, only: [:new, :create, :destroy]
