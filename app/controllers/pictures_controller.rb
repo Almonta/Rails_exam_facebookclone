@@ -1,5 +1,5 @@
 class PicturesController < ApplicationController
-  # before_action :set_picture, only: [:show, :edit, :update, :destory]
+  before_action :set_picture, only: [:show, :edit, :update, :destory]
   def index
     @pictures = Picture.all
   end
@@ -7,5 +7,54 @@ class PicturesController < ApplicationController
   def new
     @picture = Picture.new
   end
-  
+
+  def create
+    # @picture = Picture.new(picture_params)
+    # @picture.user_id = current_user.id
+    @picture = current_user.pictures.build(picture_params)
+    # @user = @picture.user.name
+    if params[:back]
+      render :new
+    else
+      if @picture.save
+        redirect_to pictures_path, notice: "投稿を作成しました！"
+      else
+        render :new
+      end
+    end
+  end
+
+  def show
+  end
+
+  def edit 
+  end
+
+  def update
+    if @picture.update(picture_params)
+      redirect_to pictures_path, notice: "投稿を編集しました！"
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @picture.destroy
+    redirect_to pictures_path, notice: "投稿を削除しました"
+  end
+
+  def confirm
+    # @picture = Picture.new(picture_params)
+    # @picture.user_id = current_user.id
+    @picture = current_user.pictures.build(picture_params)
+    render :new if @picture.invalid?
+  end
+
+  private
+  def picture_params
+    params.require(:picture).permit(:title, :content)
+  end
+  def set_picture
+    @picture = Picture.find(params[:id])
+  end
 end
