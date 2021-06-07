@@ -10,9 +10,11 @@
     </div>
   <% end %>
 
-  <div class="picture_title">
-    <%= form.label :image %><br>
+  <div class="field">
+    <%= form.label :image %>
+    <%= image_tag(@picture.image.url) if @picture.image && @picture.image.url %>
     <%= form.file_field :image %>
+    <%= form.hidden_field :image_cache %>
   </div>
 
   <div class="picture_title">
@@ -22,4 +24,3 @@
 
   <%= form.submit %>
 <% end %>
-<%= link_to "ブログ一覧画面にもどる", pictures_path %>
