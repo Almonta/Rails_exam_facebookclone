@@ -19,15 +19,3 @@ html {
   background-color:#F2F3F5;
 }
 
-.navbar navbar-default {
-  background-color:antiquewhite;
-  position: fixed;
-  top: 0;
-  left: 0;
-  margin: 0;
-  
-}
-
-.status {
-  font-size: 30px;
-}

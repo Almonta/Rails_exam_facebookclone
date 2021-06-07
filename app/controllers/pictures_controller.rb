@@ -3,7 +3,6 @@ class PicturesController < ApplicationController
   def index
     @pictures = Picture.all.order(created_at: :desc)
   end
-
   def new
     if params[:back]
       @picture = Picture.new(picture_params)
@@ -11,12 +10,8 @@ class PicturesController < ApplicationController
       @picture = Picture.new
     end
   end
-
   def create
-    # @picture = Picture.new(picture_params)
-    # @picture.user_id = current_user.id
     @picture = current_user.pictures.build(picture_params)
-    # @user = @picture.user.name
     if params[:back]
       render :new
     else
@@ -27,13 +22,10 @@ class PicturesController < ApplicationController
       end
     end
   end
-
   def show
   end
-
   def edit 
   end
-
   def update
     if @picture.update(picture_params)
       redirect_to pictures_path, notice: "投稿を編集しました！"
@@ -41,19 +33,14 @@ class PicturesController < ApplicationController
       render :edit
     end
   end
-
   def destroy
     @picture.destroy
     redirect_to pictures_path, notice: "投稿を削除しました"
   end
-
   def confirm
-    # @picture = Picture.new(picture_params)
-    # @picture.user_id = current_user.id
     @picture = current_user.pictures.build(picture_params)
     render :new if @picture.invalid?
   end
-
   private
   def picture_params
     params.require(:picture).permit(:content, :image, :image_cache)
